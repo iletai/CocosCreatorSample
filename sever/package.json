@@ -14,5 +14,8 @@
     "Sever"
   ],
   "author": "iletai",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sever": "0.0.2"
+  }
 }

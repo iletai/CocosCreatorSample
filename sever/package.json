@@ -1,0 +1,18 @@
+{
+  "name": "multiplayer",
+  "version": "0.0.1",
+  "description": "The sever node js for mutilplayer cocoscreator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iletai/CocosCreatorSample/sever"
+  },
+  "keywords": [
+    "Sever"
+  ],
+  "author": "iletai",
+  "license": "MIT"
+}

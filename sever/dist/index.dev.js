@@ -46,7 +46,7 @@ webSocketSever.on('connection', function connection(ws) {
 
   for (var userid in users) {
     var us = users[userid];
-    console(userid);
+    console.log(userid);
 
     if (us.ws != ws) {
       us.ws.send(JSON.stringify({
@@ -63,4 +63,42 @@ webSocketSever.on('connection', function connection(ws) {
       }));
     }
   }
+
+  ws.on('message', function (data) {
+    var playerdata = JSON.parse(data);
+
+    if (playerdata.type == STATE_READY) {
+      console.log("Recevied mesage from client: => ".concat(data));
+    }
+
+    var pack = new Array();
+
+    if (playerdata.type == STATE_RUNNING) {
+      console.log('Send data: ');
+    }
+
+    for (var id in users) {
+      users[id].ws.send(JSON.stringify(pack));
+    }
+  });
+  ws.on('close', function (message) {
+    console.log('closing sever side ');
+    console.log(message);
+    console.log(wss.clients.length);
+
+    for (var obj in users) {
+      console.log(obj);
+
+      if (users[obj].ws == ws) {
+        console.log("remove client --");
+        delete users[obj];
+        break;
+      }
+    }
+
+    console.log('clients size : ' + Object.keys(users).length);
+  });
+  ws.on('error', function (code, reason) {
+    console.log(code);
+  });
 });
